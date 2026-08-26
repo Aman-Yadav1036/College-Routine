@@ -1,91 +1,582 @@
+
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0f14">
-<title>Viswa Niketan — Class XI Routine</title>
-  <link rel="icon" type="image/x-icon" href="routine.png">
-<style>
-:root{--bg:#080b10;--panel:#10151d;--panel2:#151c26;--line:#263241;--text:#f4f7fb;--muted:#9ca8b7;--accent:#65d9ff;--accent2:#8b7cff;--danger:#ff5d73;--good:#54e6a3;--shadow:0 14px 40px rgba(0,0,0,.28)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -10%,#172232 0,#080b10 38%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}button,select{font:inherit}button{cursor:pointer}.app{width:min(1180px,100%);margin:auto;padding:14px 12px 34px}.topbar{position:sticky;top:0;z-index:20;margin:-14px -12px 14px;padding:14px 12px 12px;background:rgba(8,11,16,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}.brand{display:flex;align-items:center;gap:10px}.logo{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#061018;font-weight:900;box-shadow:0 8px 26px rgba(101,217,255,.18)}h1{font-size:17px;line-height:1.15;margin:0} .subtitle{font-size:11px;color:var(--muted);margin-top:3px}.controls{display:grid;gap:10px;margin-top:12px}.label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px}.select-wrap{position:relative}.select-wrap select{width:100%;height:48px;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);padding:0 42px 0 14px;outline:none;appearance:none}.select-wrap:after{content:"⌄";position:absolute;right:15px;top:10px;color:var(--accent);font-size:21px;pointer-events:none}.date-nav{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}.navbtn{min-height:46px;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);font-weight:700;font-size:12px}.navbtn:active{transform:scale(.98)}.navbtn.today{background:linear-gradient(135deg,rgba(101,217,255,.16),rgba(139,124,255,.13));border-color:rgba(101,217,255,.4)}.date-head{display:flex;justify-content:space-between;align-items:end;margin:18px 2px 12px}.dayname{font-size:25px;font-weight:900;letter-spacing:-.03em}.date-text{font-size:13px;color:var(--muted);margin-top:2px}.today-badge{font-size:10px;font-weight:900;letter-spacing:.08em;padding:7px 9px;border-radius:999px;background:rgba(84,230,163,.12);color:var(--good);border:1px solid rgba(84,230,163,.25)}.status{background:linear-gradient(135deg,rgba(255,93,115,.11),rgba(255,93,115,.04));border:1px solid rgba(255,93,115,.2);border-radius:18px;padding:14px;margin-bottom:14px}.status.no-class{background:var(--panel);border-color:var(--line)}.status-title{font-size:10px;letter-spacing:.12em;color:var(--danger);font-weight:900;text-transform:uppercase}.status.no-class .status-title{color:var(--muted)}.status-main{font-size:18px;font-weight:900;margin-top:4px}.status-sub{font-size:12px;color:var(--muted);margin-top:2px}.routine-title{font-size:14px;font-weight:900;margin:18px 2px 9px}.cards{display:grid;gap:9px}.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:17px;padding:13px;display:grid;grid-template-columns:78px 1fr;gap:12px;position:relative;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.12)}.card.now{border-color:rgba(255,93,115,.6);box-shadow:0 0 0 1px rgba(255,93,115,.08),0 12px 35px rgba(255,93,115,.08)}.card.break{background:#0d1218}.time{font-size:11px;color:var(--accent);font-weight:900;line-height:1.35}.time small{display:block;color:var(--muted);font-size:9px;margin-top:4px;font-weight:600}.subject{font-size:16px;font-weight:900;letter-spacing:-.01em}.meta{font-size:11px;color:var(--muted);margin-top:4px}.now-pill{position:absolute;right:10px;top:9px;color:var(--danger);font-size:9px;font-weight:900;letter-spacing:.08em}.special{color:#c6bfff}.empty{padding:24px 15px;text-align:center;border:1px dashed var(--line);border-radius:17px;color:var(--muted);background:rgba(255,255,255,.015)}.week{display:none;margin-top:26px}.week-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.day-mini{border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:10px;min-height:90px}.day-mini strong{font-size:12px}.day-mini span{display:block;color:var(--muted);font-size:10px;margin-top:5px}.day-mini.active{border-color:rgba(101,217,255,.45);background:rgba(101,217,255,.06)}.footer{text-align:center;color:#667384;font-size:10px;margin-top:28px;line-height:1.5}.desktop{display:none}
-@media(min-width:700px){.app{padding:22px 24px 50px}.topbar{position:static;margin:-22px -24px 22px;padding:18px 24px}.controls{grid-template-columns:280px 1fr;align-items:end}.date-nav{max-width:520px;margin-left:auto}.date-head{margin-top:26px}.mobile{display:none}.desktop{display:block}.cards{display:none}.desktop-table{overflow:auto;border:1px solid var(--line);border-radius:18px;background:var(--panel);box-shadow:var(--shadow)}table{border-collapse:collapse;width:100%;min-width:1080px}th,td{border:1px solid var(--line);padding:9px 7px;text-align:center;font-size:11px}th{position:sticky;top:0;background:#111822;color:var(--accent);font-size:10px}td:first-child,th:first-child{position:sticky;left:0;background:#111822;font-weight:900;z-index:2}.desktop-table .nowcell{background:rgba(255,93,115,.14);box-shadow:inset 0 0 0 1px rgba(255,93,115,.35)}.desktop-table .breakcell{color:var(--muted);font-weight:800}.desktop-table .specialcell{color:#c6bfff;font-weight:800}.week{display:block}.routine-title{margin-top:24px}}
-@media(min-width:1000px){.topbar{display:flex;align-items:center;justify-content:space-between;gap:20px}.controls{margin:0;grid-template-columns:250px 520px}.brand{min-width:320px}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f14">
+  <title>Viswa Niketan — Class XI Routine</title>
+  <style>
+    :root {
+      --bg: #080b10;
+      --panel: #10151d;
+      --panel2: #151c26;
+      --line: #263241;
+      --text: #f4f7fb;
+      --muted: #9ca8b7;
+      --accent: #65d9ff;
+      --accent2: #8b7cff;
+      --danger: #ff5d73;
+      --good: #54e6a3;
+      --shadow: 0 14px 40px rgba(0, 0, 0, .28)
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 50% -10%, #172232 0, #080b10 38%);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh
+    }
+
+    button,
+    select {
+      font: inherit
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    .app {
+      width: min(1180px, 100%);
+      margin: auto;
+      padding: 14px 12px 34px
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      margin: -14px -12px 14px;
+      padding: 14px 12px 12px;
+      background: rgba(8, 11, 16, .88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, .06)
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #061018;
+      font-weight: 900;
+      box-shadow: 0 8px 26px rgba(101, 217, 255, .18)
+    }
+
+    h1 {
+      font-size: 17px;
+      line-height: 1.15;
+      margin: 0
+    }
+
+    .subtitle {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 3px
+    }
+
+    .controls {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px
+    }
+
+    .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--muted);
+      margin-bottom: 6px
+    }
+
+    .select-wrap {
+      position: relative
+    }
+
+    .select-wrap select {
+      width: 100%;
+      height: 48px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      color: var(--text);
+      padding: 0 42px 0 14px;
+      outline: none;
+      appearance: none
+    }
+
+    .select-wrap:after {
+      content: "⌄";
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      color: var(--accent);
+      font-size: 21px;
+      pointer-events: none
+    }
+
+    .date-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 7px
+    }
+
+    .navbtn {
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      color: var(--text);
+      font-weight: 700;
+      font-size: 12px
+    }
+
+    .navbtn:active {
+      transform: scale(.98)
+    }
+
+    .navbtn.today {
+      background: linear-gradient(135deg, rgba(101, 217, 255, .16), rgba(139, 124, 255, .13));
+      border-color: rgba(101, 217, 255, .4)
+    }
+
+    .date-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin: 18px 2px 12px
+    }
+
+    .dayname {
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: -.03em
+    }
+
+    .date-text {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .today-badge {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      padding: 7px 9px;
+      border-radius: 999px;
+      background: rgba(84, 230, 163, .12);
+      color: var(--good);
+      border: 1px solid rgba(84, 230, 163, .25)
+    }
+
+    .status {
+      background: linear-gradient(135deg, rgba(255, 93, 115, .11), rgba(255, 93, 115, .04));
+      border: 1px solid rgba(255, 93, 115, .2);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 14px
+    }
+
+    .status.no-class {
+      background: var(--panel);
+      border-color: var(--line)
+    }
+
+    .status-title {
+      font-size: 10px;
+      letter-spacing: .12em;
+      color: var(--danger);
+      font-weight: 900;
+      text-transform: uppercase
+    }
+
+    .status.no-class .status-title {
+      color: var(--muted)
+    }
+
+    .status-main {
+      font-size: 18px;
+      font-weight: 900;
+      margin-top: 4px
+    }
+
+    .status-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px
+    }
+
+    .routine-title {
+      font-size: 14px;
+      font-weight: 900;
+      margin: 18px 2px 9px
+    }
+
+    .cards {
+      display: grid;
+      gap: 9px
+    }
+
+    .card {
+      background: linear-gradient(145deg, var(--panel2), var(--panel));
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      padding: 13px;
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .12)
+    }
+
+    .card.now {
+      border-color: rgba(255, 93, 115, .6);
+      box-shadow: 0 0 0 1px rgba(255, 93, 115, .08), 0 12px 35px rgba(255, 93, 115, .08)
+    }
+
+    .card.break {
+      background: #0d1218
+    }
+
+    .time {
+      font-size: 11px;
+      color: var(--accent);
+      font-weight: 900;
+      line-height: 1.35
+    }
+
+    .time small {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      margin-top: 4px;
+      font-weight: 600
+    }
+
+    .subject {
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: -.01em
+    }
+
+    .meta {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 4px
+    }
+
+    .now-pill {
+      position: absolute;
+      right: 10px;
+      top: 9px;
+      color: var(--danger);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .08em
+    }
+
+    .special {
+      color: #c6bfff
+    }
+
+    .empty {
+      padding: 24px 15px;
+      text-align: center;
+      border: 1px dashed var(--line);
+      border-radius: 17px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, .015)
+    }
+
+    .week {
+      display: none;
+      margin-top: 26px
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px
+    }
+
+    .day-mini {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 15px;
+      padding: 10px;
+      min-height: 90px
+    }
+
+    .day-mini strong {
+      font-size: 12px
+    }
+
+    .day-mini span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-top: 5px
+    }
+
+    .day-mini.active {
+      border-color: rgba(101, 217, 255, .45);
+      background: rgba(101, 217, 255, .06)
+    }
+
+    .footer {
+      text-align: center;
+      color: #667384;
+      font-size: 10px;
+      margin-top: 28px;
+      line-height: 1.5
+    }
+
+    .desktop {
+      display: none
+    }
+
+    @media(min-width:700px) {
+      .app {
+        padding: 22px 24px 50px
+      }
+
+      .topbar {
+        position: static;
+        margin: -22px -24px 22px;
+        padding: 18px 24px
+      }
+
+      .controls {
+        grid-template-columns: 280px 1fr;
+        align-items: end
+      }
+
+      .date-nav {
+        max-width: 520px;
+        margin-left: auto
+      }
+
+      .date-head {
+        margin-top: 26px
+      }
+
+      .mobile {
+        display: none
+      }
+
+      .desktop {
+        display: block
+      }
+
+      .cards {
+        display: none
+      }
+
+      .desktop-table {
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--panel);
+        box-shadow: var(--shadow)
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 1080px
+      }
+
+      th,
+      td {
+        border: 1px solid var(--line);
+        padding: 9px 7px;
+        text-align: center;
+        font-size: 11px
+      }
+
+      th {
+        position: sticky;
+        top: 0;
+        background: #111822;
+        color: var(--accent);
+        font-size: 10px
+      }
+
+      td:first-child,
+      th:first-child {
+        position: sticky;
+        left: 0;
+        background: #111822;
+        font-weight: 900;
+        z-index: 2
+      }
+
+      .desktop-table .nowcell {
+        background: rgba(255, 93, 115, .14);
+        box-shadow: inset 0 0 0 1px rgba(255, 93, 115, .35)
+      }
+
+      .desktop-table .breakcell {
+        color: var(--muted);
+        font-weight: 800
+      }
+
+      .desktop-table .specialcell {
+        color: #c6bfff;
+        font-weight: 800
+      }
+
+      .week {
+        display: block
+      }
+
+      .routine-title {
+        margin-top: 24px
+      }
+    }
+
+    @media(min-width:1000px) {
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px
+      }
+
+      .controls {
+        margin: 0;
+        grid-template-columns: 250px 520px
+      }
+
+      .brand {
+        min-width: 320px
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div class="app">
-<header class="topbar">
-  <div class="brand"><div class="logo">VN</div><div><h1>VISWA NIKETAN SECONDARY SCHOOL</h1><div class="subtitle">Tripureswor, Kathmandu · Class XI Science</div></div></div>
-  <div class="controls">
-    <div><div class="label">Select section</div><div class="select-wrap"><select id="section"></select></div></div>
-    <div><div class="label">Date navigation</div><div class="date-nav"><button class="navbtn" id="prev">‹ Yesterday</button><button class="navbtn today" id="today">Today</button><button class="navbtn" id="next">Tomorrow ›</button></div></div>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">VN</div>
+        <div>
+          <h1>VISWA NIKETAN SECONDARY SCHOOL</h1>
+          <div class="subtitle">Tripureswor, Kathmandu · Class XI Science</div>
+        </div>
+      </div>
+      <div class="controls">
+        <div>
+          <div class="label">Select section</div>
+          <div class="select-wrap"><select id="section"></select></div>
+        </div>
+        <div>
+          <div class="label">Date navigation</div>
+          <div class="date-nav"><button class="navbtn" id="prev">‹ Yesterday</button><button class="navbtn today"
+              id="today">Today</button><button class="navbtn" id="next">Tomorrow ›</button></div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="date-head">
+        <div>
+          <div class="dayname" id="dayName">Monday</div>
+          <div class="date-text" id="dateText"></div>
+        </div>
+        <div id="todayBadge" class="today-badge" hidden>TODAY</div>
+      </div>
+      <section id="status" class="status no-class">
+        <div class="status-title" id="statusTitle">NO CLASS CURRENTLY</div>
+        <div class="status-main" id="statusMain">No class currently</div>
+        <div class="status-sub" id="statusSub"></div>
+      </section>
+      <div class="routine-title">Today's Routine · <span id="sectionLabel">Science A</span></div>
+      <div class="mobile cards" id="cards"></div>
+      <div class="desktop desktop-table" id="desktopTable"></div>
+      <section class="week">
+        <div class="routine-title">Week overview</div>
+        <div class="week-grid" id="weekGrid"></div>
+      </section>
+    </main>
+    <div class="footer">Routine data transcribed from the supplied Class XI Science timetable image. Subject/practical
+      codes are kept as printed.</div>
   </div>
-</header>
-<main>
-  <div class="date-head"><div><div class="dayname" id="dayName">Monday</div><div class="date-text" id="dateText"></div></div><div id="todayBadge" class="today-badge" hidden>TODAY</div></div>
-  <section id="status" class="status no-class"><div class="status-title" id="statusTitle">NO CLASS CURRENTLY</div><div class="status-main" id="statusMain">No class currently</div><div class="status-sub" id="statusSub"></div></section>
-  <div class="routine-title">Today's Routine · <span id="sectionLabel">Science A</span></div>
-  <div class="mobile cards" id="cards"></div>
-  <div class="desktop desktop-table" id="desktopTable"></div>
-  <section class="week"><div class="routine-title">Week overview</div><div class="week-grid" id="weekGrid"></div></section>
-</main>
-<div class="footer">Routine data transcribed from the supplied Class XI Science timetable image. Subject/practical codes are kept as printed.</div>
-</div>
-<script>
-const TIMES=[
-  '10:05–10:45','10:45–11:25','11:25–12:05','12:05–12:45','12:45–1:25','1:25–2:00',
-  '2:00–2:40','2:40–3:20','3:20–4:00','4:00–4:40','4:40–5:20'
-];
-const SECTIONS=['A','B','C','D','E','F','G','H','I','J','K'];
-const DAYS=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-const routines={
-A:{Monday:['MATH-CE','A2/A3/A1','A2/A3/A1','ENG-TRP','CHE-BT','BREAK','NEP-AP','MATH-DN','CHE-SR','PHY-SKL','ZOO-RS'],Tuesday:['MATH-CI','A3/A1/A2','A3/A1/A2','ENG-TRP','PHY-CS','BREAK','CHE-BB','PHY-SB','BOT-AB','BOT-BK','CHE-BT'],Wednesday:[null,'MATH-DA','ZOO-RS','ENG-TRP','BREAK','BREAK','A1/A2/A3','CHE-BB','NEP-AP','PHY-CS','MATH-DN'],Thursday:[null,'ZOO-PT','MATH-DA','ENG-TRP','PHY-SB',null,'NEP-AP','CHE-SR','PHY-SKL','BOT-AB','BOT-SLA'],Friday:[null,'MATH-DA','ENG-TRP','CHE-BB','MATH-DN',null,'NEP-AP','ZOO-PT','PHY-SKL','CHE-BT','PHY-CS']},
-B:{Monday:[null,'A2/A3/A1','A2/A3/A1','CHE-SR','NEP-AK','BREAK','ENG-BG','PHY-SKL','MATH-DN','CHE-SJ','BOT-SLA'],Tuesday:[null,'A3/A1/A2','A3/A1/A2','BOT-AB','NEP-AK','BREAK','PHY-AS','PHY-SKL','ENG-BG','CHE-SJ','MATH-NT'],Wednesday:['MATH-CI','CHE-SR','MATH-DN','ZOO-RS','BREAK','BREAK','A1/A2/A3','CHE-BT','ENG-BG','PHY-SB','PHY-SKL'],Thursday:['MATH-CI','MATH-NT','CHE-BT','ZOO-RS','NEP-AK',null,'ZOO-PT','ENG-BG','PHY-AS','MATH-DN','ZOO-MT'],Friday:[null,'CHE-BT','NEP-AK','MATH-NT','CHE-SJ',null,'PHY-SB','PHY-AS','ENG-BG','BOT-AB','BOT-BK']},
-C:{Monday:[null,'PHY-BMB','CHE-BS','NEP-AK','BREAK','B1/B2/B3','B1/B2/B3','ENG-MR','CHE-SJ','MATH-NT','CHE-DG'],Tuesday:[null,'NEP-AK','MATH-NT','CHE-SJ','ENG-MR','BREAK','BOT-BK','ZOO-PT','MATH-GC','CHE-DG','BOT-AB'],Wednesday:[null,'MATH-NT','NEP-AK','MATH-DN','MATH-GC',null,'ZOO-RS','PHY-GS','ENG-MR','PHY-SKL','ZOO-MT'],Thursday:['PHY-BMB','NEP-AK','CHE-BS','MATH-DN','ENG-MR',null,'PHY-GS','B3/B1/B2','B3/B1/B2','MATH-NT','PHY-SKL'],Friday:['ZOO-RS','BOT-SLA','MATH-NT','BOT-AB','PHY-BMB',null,'ENG-MR','B2/B3/B1','B2/B3/B1','CHE-DG','PHY-SKL']},
-D:{Monday:[null,'MATH-DN','ENG-SG','CHE-BS','BREAK','B1/B2/B3','B1/B2/B3','PHY-CR','MATH-GC','BOT-BK','MATH-NT'],Tuesday:[null,'ENG-SG','NEP-PB','PHY-RP','BOT-AB','BREAK','PHY-CR','CHE-DG','CHE-SJ','PHY-SKL','ZOO-RS'],Wednesday:[null,'ZOO-PT','ENG-SG','MATH-NT','MATH-DN',null,'PHY-CR','PHY-SKL','NEP-PB','BOT-SLA','CHE-SJ'],Thursday:['BOT-SLA','ENG-SG','NEP-PB','CHE-BS','BOT-AB',null,'CHE-DG','B3/B1/B2','B3/B1/B2','ZOO-MT','MATH-DN'],Friday:[null,'ENG-SG','NEP-PB','CHE-SJ','PHY-RP',null,'CHE-DG','B2/B3/B1','B2/B3/B1','PHY-SKL','ZOO-RS']},
-E:{Monday:['BOT-AB','CHE-BS','NEP-AP','C1/C2/C3','C1/C2/C3','BREAK','PHY-AS','PHY-RP','MATH-VS','ENG-MR','BOT-BK'],Tuesday:[null,'ZOO-PT','MATH-VS','C2/C3/C1','C2/C3/C1','BREAK','CHE-SJ','MATH-VS','MATH-NT','ENG-MR','ZOO-MT'],Wednesday:['BOT-SLA','MATH-VS','ZOO-PT','MATH-GC','PHY-CR',null,'CHE-SJ','ENG-MR','MATH-NT','NEP-AP','CHE-DG'],Thursday:[null,'C3/C1/C2','C3/C1/C2','NEP-AP','PHY-CR',null,'CHE-BS','ENG-MR','CHE-SJ','CHE-DG','PHY-AS'],Friday:[null,'ZOO-RS','MATH-GC','NEP-AP','PHY-AS',null,'PHY-RP','PHY-CR','MATH-NT','ENG-MR','BOT-AB']},
-F:{Monday:[null,'CHE-SR','MATH-NT','C1/C2/C3','C1/C2/C3','BREAK','PHY-CR','ENG-BG','PHY-SKL','PHY-SB','COM-PRA'],Tuesday:[null,'MATH-VS','NEP-AK','C2/C3/C1','C2/C3/C1','BREAK','ENG-BG','PHY-CR','COM-KT','MATH-NT','PHY-SKL'],Wednesday:[null,'NEP-AK','PHY-SB','PHY-CR','COM-KT',null,'ENG-BG','CHE-SJ','COM-PRA','CHE-DG','MATH-NT'],Thursday:[null,'C3/C1/C2','C3/C1/C2','NEP-AK','CHE-SJ',null,'MATH-VS','ENG-BG','MATH-GC','PHY-SKL','CHE-DG'],Friday:[null,'NEP-AK','COM-PRA','CHE-SR','MATH-VS',null,'ENG-BG','CHE-SJ','COM-KT','MATH-GC','CHE-DG']},
-G:{Monday:[null,'NEP-AK','COM-PRA','MATH-GC','CHE-BS','BREAK','CHE-BT','ENG-MR','PHY-GS','MATH-DN','PHY-SKL'],Tuesday:[null,'MATH-DN','ENG-MR','NEP-AK','BREAK','BREAK','D1/D2/D3','MATH-NT','PHY-SKL','COM-PRA','CHE-PD'],Wednesday:[null,'CHE-BS','NEP-AK','CHE-BT','COM-KT',null,'ENG-BG','CHE-SJ','COM-PRA','CHE-DG','MATH-NT'],Thursday:[null,'CHE-BS','NEP-AK','CHE-BT','COM-KT','BREAK','ENG-MR','PHY-BMB','PHY-GS','CHE-PD','COM-PRA'],Friday:[null,'D3/D1/D2','D3/D1/D2','COM-KT','NEP-AK',null,'CHE-BT','MATH-NT','ENG-MR','CHE-PD','PHY-BMB']},
-H:{Monday:[null,'PHY-SB','NEP-AK','ENG-MR','PHY-CR','BREAK','CHE-BS','CHE-PD','PHY-AS','MATH-VS','COM-KT'],Tuesday:[null,'MATH-NT','COM-KT','CHE-PD','BREAK','BREAK','D1/D2/D3','ENG-MR','PHY-AS','CHE-BT','COM-KT'],Wednesday:[null,'COM-PRA','MATH-NT','MATH-GC','CHE-BS',null,'NEP-AK','CHE-BT','ENG-MR','PHY-AS','MATH-VS'],Thursday:[null,'COM-PRA','MATH-NT','MATH-GC','CHE-BS','BREAK','NEP-AK','CHE-BT','ENG-MR','PHY-AS','MATH-VS'],Friday:[null,'D3/D1/D2','D3/D1/D2','NEP-AK','ENG-MR',null,'PHY-CR','CHE-BT','MATH-VS','COM-PRA','MATH-GC']},
-I:{Monday:[null,'MATH-DA','ZOO-PT','ENG-SG','NEP-AP','BREAK','PHY-RP','CHE-SR','BOT-AB','PHY-AS','MATH-VS'],Tuesday:[null,'MATH-DA','NEP-AP','ENG-SG','CHE-DG','BREAK','BREAK','PHY-CS','MATH-GC','CHE-SR','E2/E1'],Wednesday:[null,'NEP-AK','PHY-SB','PHY-CR','COM-KT',null,'ENG-BG','CHE-SJ','COM-PRA','CHE-DG','MATH-NT'],Thursday:[null,'ZOO-RS','BOT-SLA','ENG-SG','BOT-BK',null,'CHE-DG','PHY-AS','CHE-SJ','E2/E1','E2/E1'],Friday:[null,'NEP-AP','CHE-SJ','ENG-SG','CHE-DG',null,'BOT-AB','PHY-RP','CHE-SJ','PHY-CS','ZOO-MT']},
-J:{Monday:[null,'MATH-NT','ZOO-RS','PHY-GS','PHY-CS','BREAK','ENG-MR','BOT-AB','NEP-PB','CHE-DG','BOT-SLA'],Tuesday:[null,'PHY-AN','ZOO-RS','MATH-GC','CHE-SR','BREAK','CHE-DG','CHE-BB','ENG-MR','BOT-AB','BOT-BK'],Wednesday:null,Thursday:[null,'NEP-PB','MATH-VS','CHE-BB','CHE-DG','BREAK','ZOO-PT','ENG-MR','CHE-SR','PHY-GS','PHY-CS'],Friday:[null,'MATH-VS','PHY-AN','ENG-MR','BREAK','E4/E3','E4/E3','CHE-BB','PHY-CS','NEP-PB','MATH-NT']},
-K:{Monday:[null,'COM-KT','CHE-BT','ENG-SKG','PHY-RP','BREAK','CHE-SJ','MATH-VS','MATH-NT','COM-PRA','MATH-GC'],Tuesday:[null,'CHE-SR','CHE-SJ','ENG-SKG','PHY-SB','BREAK','CHE-BT','MATH-GC','NEP-AP','PHY-CS',null],Wednesday:null,Thursday:[null,'PHY-SB','CHE-BT','ENG-SKG','PHY-CS','BREAK','MATH-NT','NEP-AP','MATH-VS','CHE-SJ','COM-KT'],Friday:[null,'ENG-SKG','NEP-AP','PHY-RP','BREAK','E4/E3','E4/E3','PHY-CS','CHE-SR','PHY-SB','COM-PRA']}
-};
-// Wednesday rows J and K do not appear in the supplied image; Wednesday ends at section F.
-for(const s of ['A','B','C','D','E','F','G','H','I','J','K']) if(!routines[s].Wednesday) routines[s].Wednesday=null;
-const sectionEl=document.getElementById('section');
-SECTIONS.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent='Science '+s;sectionEl.appendChild(o)});
-let section=localStorage.getItem('vn-section')||'G'; if(!SECTIONS.includes(section)) section='G'; sectionEl.value=section;
-let selected=new Date(); selected.setHours(0,0,0,0);
-function fmtDate(d){return d.toLocaleDateString(undefined,{month:'long',day:'numeric',year:'numeric'})}
-function dayName(d){return DAYS[d.getDay()]}
-function timeToMinutes(t){let [h,m]=t.split(':').map(Number);if(h<9)h+=12;return h*60+m}
-function currentSlot(){const now=new Date();const mins=now.getHours()*60+now.getMinutes();for(let i=0;i<TIMES.length;i++){const [a,b]=TIMES[i].split('–').map(x=>timeToMinutes(x));if(mins>=a&&mins<b)return i}return -1}
-function entries(arr){if(!arr)return [];const out=[];let i=0;while(i<arr.length){if(!arr[i]){i++;continue}let j=i+1;while(j<arr.length&&arr[j]===arr[i])j++;out.push({label:arr[i],start:i,end:j-1});i=j}return out}
-function render(){
- const d=selected, dn=dayName(d), arr=routines[section][dn];
- document.getElementById('dayName').textContent=dn;
- document.getElementById('dateText').textContent=fmtDate(d);
- document.getElementById('todayBadge').hidden=d.toDateString()!==new Date().toDateString();
- document.getElementById('sectionLabel').textContent='Science '+section;
- const nowIdx=d.toDateString()===new Date().toDateString()?currentSlot():-1;
- const status=document.getElementById('status'), title=document.getElementById('statusTitle'), main=document.getElementById('statusMain'), sub=document.getElementById('statusSub');
- if(!arr){status.className='status no-class';title.textContent='NO CLASSES';main.textContent='No classes scheduled today.';sub.textContent='The supplied timetable has no section rows for '+dn+'.'}
- else if(nowIdx>=0&&arr[nowIdx]){status.className='status';title.textContent='🔴 NOW';main.textContent=arr[nowIdx];sub.textContent=TIMES[nowIdx]+' · Science '+section}
- else{status.className='status no-class';title.textContent='NO CLASS CURRENTLY';main.textContent='No class currently';sub.textContent=arr.some(Boolean)?'See the routine below for the next class.':'No classes scheduled today.'}
- const cards=document.getElementById('cards');cards.innerHTML='';
- if(!arr){cards.innerHTML='<div class="empty">No classes scheduled for '+dn+'.</div>'}
- else{const es=entries(arr);if(!es.length)cards.innerHTML='<div class="empty">No classes scheduled for '+dn+'.</div>';else es.forEach(e=>{const c=document.createElement('article');c.className='card'+(e.label==='BREAK'?' break':'')+(e.start<=nowIdx&&nowIdx<=e.end?' now':'');const t=document.createElement('div');t.className='time';t.textContent=TIMES[e.start].split('–')[0]+'–'+TIMES[e.end].split('–')[1];const small=document.createElement('small');small.textContent=e.end>e.start?'Multiple periods':'';t.appendChild(small);const b=document.createElement('div');b.innerHTML='<div class="subject '+(e.label.includes('/')?'special':'')+'">'+e.label+'</div><div class="meta">'+(e.label==='BREAK'?'Break':'Class XI · Science '+section)+'</div>';if(e.start<=nowIdx&&nowIdx<=e.end){const n=document.createElement('div');n.className='now-pill';n.textContent='NOW';c.append(n)}c.append(t,b);cards.appendChild(c)})}
- renderDesktop(arr,nowIdx); renderWeek();
-}
-function renderDesktop(arr,nowIdx){const wrap=document.getElementById('desktopTable');if(!arr){wrap.innerHTML='<div class="empty">No classes scheduled for '+dayName(selected)+'.</div>';return}let html='<table><thead><tr><th>Section</th>'+TIMES.map(t=>'<th>'+t+'</th>').join('')+'</tr></thead><tbody><tr><td>Science '+section+'</td>';arr.forEach((v,i)=>{let cl=v==='BREAK'?'breakcell':'';if(v&&v.includes('/'))cl+=' specialcell';if(i===nowIdx&&v)cl+=' nowcell';html+='<td class="'+cl+'">'+(v||'—')+'</td>'});html+='</tr></tbody></table>';wrap.innerHTML=html}
-function renderWeek(){const g=document.getElementById('weekGrid');g.innerHTML='';['Monday','Tuesday','Wednesday','Thursday','Friday'].forEach(day=>{const div=document.createElement('div');div.className='day-mini'+(day===dayName(selected)?' active':'');const a=routines[section][day];const count=a? a.filter(Boolean).length:0;div.innerHTML='<strong>'+day+'</strong><span>'+count+' timetable entries</span>';g.appendChild(div)})}
-sectionEl.addEventListener('change',()=>{section=sectionEl.value;localStorage.setItem('vn-section',section);render()});
-document.getElementById('prev').onclick=()=>{selected.setDate(selected.getDate()-1);render()};
-document.getElementById('next').onclick=()=>{selected.setDate(selected.getDate()+1);render()};
-document.getElementById('today').onclick=()=>{selected=new Date();selected.setHours(0,0,0,0);render()};
-render();setInterval(render,30000);
-</script>
+  <script>
+    const TIMES = [
+      '10:05–10:45', '10:45–11:25', '11:25–12:05', '12:05–12:45', '12:45–1:25', '1:25–2:00',
+      '2:00–2:40', '2:40–3:20', '3:20–4:00', '4:00–4:40', '4:40–5:20'
+    ];
+    const SECTIONS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K'];
+    const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const routines = {
+      A: {Monday: ['MATH-CE', 'A2/A3/A1', 'A2/A3/A1', 'ENG-TRP', 'CHE-BT', 'BREAK', 'NEP-AP', 'MATH-DN', 'CHE-SR', 'PHY-SKL', 'ZOO-RS'], Tuesday: ['MATH-CE', 'A3/A1/A2', 'A3/A1/A2', 'ENG-TRP', 'PHY-CS', 'BREAK', 'CHE-BB', 'PHY-SB', 'BOT-AB', 'BOT-BK', 'CHE-BT'], Wednesday: [null, 'MATH-DA', 'ZOO-RS', 'ENG-TRP', 'BREAK', 'A1/A2/A3', 'A1/A2/A3', 'CHE-BB', 'NEP-AP', 'PHY-CS', 'MATH-DN'], Thursday: [null, 'ZOO-PT', 'MATH-DA', 'ENG-TRP', 'PHY-SB', 'BREAK', 'NEP-AP', 'CHE-SR', 'PHY-SKL', 'BOT-AB', 'BOT-SLA'], Friday: [null, 'MATH-DA', 'ENG-TRP', 'CHE-BB', 'MATH-DN','BREAK','NEP-AP', 'ZOO-PT', 'PHY-SKL', 'CHE-BT', 'PHY-CS']},
+      B: {Monday: [null, 'A2/A3/A1', 'A2/A3/A1', 'CHE-SR', 'NEP-AK', 'BREAK', 'ENG-BG', 'PHY-SKL', 'MATH-DN', 'CHE-SJ', 'BOT-SLA'], Tuesday: [null, 'A3/A1/A2', 'A3/A1/A2', 'BOT-AB', 'NEP-AK', 'BREAK', 'PHY-AS', 'PHY-SKL', 'ENG-BG', 'CHE-SJ', 'MATH-NT'], Wednesday: ['MATH-CI', 'CHE-SR', 'MATH-DN', 'ZOO-RS', 'BREAK', 'BREAK', 'A1/A2/A3', 'CHE-BT', 'ENG-BG', 'PHY-SB', 'PHY-SKL'], Thursday: ['MATH-CE', 'MATH-NT', 'CHE-BT', 'ZOO-RS', 'NEP-AK', 'BREAK', 'ZOO-PT', 'ENG-BG', 'PHY-AS', 'MATH-DN', 'ZOO-MT'], Friday: [null, 'CHE-BT', 'NEP-AK', 'MATH-NT', 'CHE-SJ', 'BREAK', 'PHY-SB', 'PHY-AS', 'ENG-BG', 'BOT-AB', 'BOT-BK']},
+      C: {Monday: [null, 'PHY-BMB', 'CHE-BS', 'NEP-AK', 'BREAK', 'B1/B2/B3', 'B1/B2/B3', 'ENG-MR', 'CHE-SJ', 'MATH-NT', 'CHE-DG'], Tuesday: [null, 'NEP-AK', 'MATH-NT', 'CHE-SJ', 'ENG-MR', 'BREAK', 'BOT-BK', 'ZOO-PT', 'MATH-GC', 'CHE-DG', 'BOT-AB'], Wednesday: [null, 'MATH-NT', 'NEP-AK', 'MATH-DN', 'MATH-GC', 'BREAK', 'ZOO-RS', 'PHY-GS', 'ENG-MR', 'PHY-SKL', 'ZOO-MT'], Thursday: ['PHY-BMB', 'NEP-AK', 'CHE-BS', 'MATH-DN', 'ENG-MR', 'BREAK', 'PHY-GS', 'B3/B1/B2', 'B3/B1/B2', 'MATH-NT', 'PHY-SKL'], Friday: ['ZOO-RS', 'BOT-SLA', 'MATH-NT', 'BOT-AB', 'PHY-BMB', 'BREAK', 'ENG-MR', 'B2/B3/B1', 'B2/B3/B1', 'CHE-DG', 'PHY-SKL']},
+      D: {Monday: [null, 'MATH-DN', 'ENG-SG', 'CHE-BS', 'BREAK', 'B1/B2/B3', 'B1/B2/B3', 'PHY-CR', 'MATH-GC', 'BOT-BK', 'MATH-NT'], Tuesday: [null, 'ENG-SG', 'NEP-PB', 'PHY-RP', 'BOT-AB', 'BREAK', 'PHY-CR', 'CHE-DG', 'CHE-SJ', 'PHY-SKL', 'ZOO-RS'], Wednesday: [null, 'ZOO-PT', 'ENG-SG', 'MATH-NT', 'MATH-DN', 'BREAK', 'PHY-CR', 'PHY-SKL', 'NEP-PB', 'BOT-SLA', 'CHE-SJ'], Thursday: ['BOT-SLA', 'ENG-SG', 'NEP-PB', 'CHE-BS', 'BOT-AB', 'BREAK', 'CHE-DG', 'B3/B1/B2', 'B3/B1/B2', 'ZOO-MT', 'MATH-DN'], Friday: [null, 'ENG-SG', 'NEP-PB', 'CHE-SJ', 'PHY-RP', 'BREAK', 'CHE-DG', 'B2/B3/B1', 'B2/B3/B1', 'PHY-SKL', 'ZOO-RS']},
+      E: {Monday: ['BOT-AB', 'CHE-BS', 'NEP-AP', 'C1/C2/C3', 'C1/C2/C3', 'BREAK', 'PHY-AS', 'PHY-RP', 'MATH-VS', 'ENG-MR', 'BOT-BK'], Tuesday: [null, 'ZOO-PT', 'MATH-VS', 'C2/C3/C1', 'C2/C3/C1', 'BREAK', 'CHE-SJ', 'MATH-VS', 'MATH-NT', 'ENG-MR', 'ZOO-MT'], Wednesday: ['BOT-SLA', 'MATH-VS', 'ZOO-PT', 'MATH-GC', 'PHY-CR', 'BREAK', 'CHE-SJ', 'ENG-MR', 'MATH-NT', 'NEP-AP', 'CHE-DG'], Thursday: [null, 'C3/C1/C2', 'C3/C1/C2', 'NEP-AP', 'PHY-CR', 'BREAK', 'CHE-BS', 'ENG-MR', 'CHE-SJ', 'CHE-DG', 'PHY-AS'], Friday: [null, 'ZOO-RS', 'MATH-GC', 'NEP-AP', 'PHY-AS', 'BREAK', 'PHY-RP', 'PHY-CR', 'MATH-NT', 'ENG-MR', 'BOT-AB']},
+      F: {Monday: [null, 'CHE-SR', 'MATH-NT', 'C1/C2/C3', 'C1/C2/C3', 'BREAK', 'PHY-CR', 'ENG-BG', 'PHY-SKL', 'PHY-SB', 'COM-PRA'], Tuesday: [null, 'MATH-VS', 'NEP-AK', 'C2/C3/C1', 'C2/C3/C1', 'BREAK', 'ENG-BG', 'PHY-CR', 'COM-KT', 'MATH-NT', 'PHY-SKL'], Wednesday: [null, 'NEP-AK', 'PHY-SB', 'PHY-CR', 'COM-KT', 'BREAK', 'ENG-BG', 'CHE-SJ', 'COM-PRA', 'CHE-DG', 'MATH-NT'], Thursday: [null, 'C3/C1/C2', 'C3/C1/C2', 'NEP-AK', 'CHE-SJ', 'BREAK', 'MATH-VS', 'ENG-BG', 'MATH-GC', 'PHY-SKL', 'CHE-DG'], Friday: [null, 'NEP-AK', 'COM-PRA', 'CHE-SR', 'MATH-VS', 'BREAK', 'ENG-BG', 'CHE-SJ', 'COM-KT', 'MATH-GC', 'CHE-DG']},
+      G: {Monday: [null, 'NEP-AK', 'COM-PRA', 'MATH-GC', 'CHE-BS', 'BREAK', 'CHE-BT', 'ENG-MR', 'PHY-GS', 'MATH-DN', 'PHY-SKL'], Tuesday: [null, 'MATH-DN', 'ENG-MR', 'NEP-AK', 'BREAK', 'D1/D2/D3', 'D1/D2/D3', 'MATH-NT', 'PHY-SKL', 'COM-PRA', 'CHE-PD'], Wednesday: [null, 'CHE-BS', 'NEP-AK', 'CHE-BT', 'COM-KT', 'BREAK', 'ENG-BG', 'CHE-SJ', 'COM-PRA', 'CHE-DG', 'MATH-NT'], Thursday: [null, 'CHE-BS', 'NEP-AK', 'CHE-BT', 'COM-KT', 'BREAK', 'ENG-MR', 'PHY-BMB', 'PHY-GS', 'CHE-PD', 'COM-PRA'], Friday: [null, 'D3/D1/D2', 'D3/D1/D2', 'COM-KT', 'NEP-AK', 'BREAK', 'CHE-BT', 'MATH-NT', 'ENG-MR', 'CHE-PD', 'PHY-BMB']},
+      H: {Monday: [null, 'PHY-SB', 'NEP-AK', 'ENG-MR', 'PHY-CR', 'BREAK', 'CHE-BS', 'CHE-PD', 'PHY-AS', 'MATH-VS', 'COM-KT'], Tuesday: [null, 'MATH-NT', 'COM-KT', 'CHE-PD', 'BREAK', 'D1/D2/D3', 'D1/D2/D3', 'ENG-MR', 'PHY-AS', 'CHE-BT', 'COM-KT'], Wednesday: [null, 'COM-PRA', 'MATH-NT', 'MATH-GC', 'CHE-BS', 'BREAK', 'NEP-AK', 'CHE-BT', 'ENG-MR', 'PHY-AS', 'MATH-VS'], Thursday: [null, 'COM-PRA', 'MATH-NT', 'MATH-GC', 'CHE-BS', 'BREAK', 'NEP-AK', 'CHE-BT', 'ENG-MR', 'PHY-AS', 'MATH-VS'], Friday: [null, 'D3/D1/D2', 'D3/D1/D2', 'NEP-AK', 'ENG-MR', 'BREAK', 'PHY-CR', 'CHE-BT', 'MATH-VS', 'COM-PRA', 'MATH-GC']},
+      I: {Monday: [null, 'MATH-DA', 'ZOO-PT', 'ENG-SG', 'NEP-AP', 'BREAK', 'PHY-RP', 'CHE-SR', 'BOT-AB', 'PHY-AS', 'MATH-VS'], Tuesday: [null, 'MATH-DA', 'NEP-AP', 'ENG-SG', 'CHE-DG', 'BREAK',  'PHY-CS', 'MATH-GC', 'CHE-SR', 'E1/E2','E2/E1'], Wednesday: [null, 'NEP-AK', 'PHY-SB', 'PHY-CR', 'COM-KT', 'BREAK', 'ENG-BG', 'CHE-SJ', 'COM-PRA', 'CHE-DG', 'MATH-NT'], Thursday: [null, 'MATH-DA', 'MATH-VS', 'ENG-SG', 'MATH-GC', 'BREAK', 'PHY-CS', 'PHY-AS', 'NEP-AP', 'MATH-VS', 'ZOO-RS'], Friday: [null, 'NEP-AP', 'CHE-SJ', 'ENG-SG', 'CHE-DG', 'BREAK', 'BOT-AB', 'PHY-RP', 'CHE-SJ', 'PHY-CS', 'ZOO-MT']},
+      J: {Monday: [null, 'MATH-NT', 'ZOO-RS', 'PHY-GS', 'PHY-CS', 'BREAK', 'ENG-MR', 'BOT-AB', 'NEP-PB', 'CHE-DG', 'BOT-SLA'], Tuesday: [null, 'PHY-AN', 'ZOO-RS', 'MATH-GC', 'CHE-SR', 'BREAK', 'CHE-DG', 'CHE-BB', 'ENG-MR', 'BOT-AB', 'BOT-BK'], Wednesday: [null, 'NEP-PB','MATH-VS', 'CHE-BB','CHE=DG','BREAK', 'ZOO-PT', 'ENG-MR','CHE-SR', 'PHY-GS','PHY-CS'],  Thursday: [null, 'NEP-PB', 'ZOO-PT', 'MATH-NT', 'BREAK', 'E3/E4', 'E3/E4', 'PHY-GS', 'BOT-BK', 'ENG-MR', 'MATH-GC'], Friday: [null, 'MATH-VS', 'PHY-AN', 'ENG-MR', 'BREAK', 'E4/E3', 'E4/E3', 'CHE-BB', 'PHY-CS', 'NEP-PB', 'MATH-NT']},
+      K: {Monday: [null, 'COM-KT', 'CHE-BT', 'ENG-SKG', 'PHY-RP', 'BREAK', 'CHE-SJ', 'MATH-VS', 'MATH-NT', 'COM-PRA', 'MATH-GC'], Tuesday: [null, 'CHE-SR', 'CHE-SJ', 'ENG-SKG', 'PHY-SB', 'BREAK', 'CHE-BT', 'MATH-GC', 'NEP-AP', 'PHY-CS', null], Wednesday: [null,'PHY-SB', 'CHE-BT','ENG-SKG', 'PHY-CS', 'BREAK', 'MATH-NT', 'NEP-AP', 'MATH-VS', 'CHE-SJ', 'COM-KT'], Thursday: [null, 'COM-KT', 'ENG-SKG', 'COM-PRA', 'BREAK', 'E3/E4', 'E3/E4', 'MATH-VS', 'CHE-BT', 'NEP-AP','MATH-NT'], Friday: [null, 'ENG-SKG', 'NEP-AP', 'PHY-RP', 'BREAK', 'E4/E3', 'E4/E3', 'PHY-CS', 'CHE-SR', 'PHY-SB', 'COM-PRA']}
+    };
+    // Wednesday rows J and K do not appear in the supplied image; Wednesday ends at section F.
+    for (const s of ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K']) if (!routines[s].Wednesday) routines[s].Wednesday = null;
+    const sectionEl = document.getElementById('section');
+    SECTIONS.forEach(s => {const o = document.createElement('option'); o.value = s; o.textContent = 'Science ' + s; sectionEl.appendChild(o)});
+    let section = localStorage.getItem('vn-section') || 'G'; if (!SECTIONS.includes(section)) section = 'G'; sectionEl.value = section;
+    let selected = new Date(); selected.setHours(0, 0, 0, 0);
+    function fmtDate(d) {return d.toLocaleDateString(undefined, {month: 'long', day: 'numeric', year: 'numeric'})}
+    function dayName(d) {return DAYS[d.getDay()]}
+    function timeToMinutes(t) {let [h, m] = t.split(':').map(Number); if (h < 9) h += 12; return h * 60 + m}
+    function currentSlot() {const now = new Date(); const mins = now.getHours() * 60 + now.getMinutes(); for (let i = 0; i < TIMES.length; i++) {const [a, b] = TIMES[i].split('–').map(x => timeToMinutes(x)); if (mins >= a && mins < b) return i} return -1}
+    function entries(arr) {if (!arr) return []; const out = []; let i = 0; while (i < arr.length) {if (!arr[i]) {i++; continue} let j = i + 1; while (j < arr.length && arr[j] === arr[i]) j++; out.push({label: arr[i], start: i, end: j - 1}); i = j} return out}
+    function render() {
+      const d = selected, dn = dayName(d), arr = routines[section][dn];
+      document.getElementById('dayName').textContent = dn;
+      document.getElementById('dateText').textContent = fmtDate(d);
+      document.getElementById('todayBadge').hidden = d.toDateString() !== new Date().toDateString();
+      document.getElementById('sectionLabel').textContent = 'Science ' + section;
+      const nowIdx = d.toDateString() === new Date().toDateString() ? currentSlot() : -1;
+      const status = document.getElementById('status'), title = document.getElementById('statusTitle'), main = document.getElementById('statusMain'), sub = document.getElementById('statusSub');
+      if (!arr) {status.className = 'status no-class'; title.textContent = 'NO CLASSES'; main.textContent = 'No classes scheduled today.'; sub.textContent = 'The supplied timetable has no section rows for ' + dn + '.'}
+      else if (nowIdx >= 0 && arr[nowIdx]) {status.className = 'status'; title.textContent = '🔴 NOW'; main.textContent = arr[nowIdx]; sub.textContent = TIMES[nowIdx] + ' · Science ' + section}
+      else {status.className = 'status no-class'; title.textContent = 'NO CLASS CURRENTLY'; main.textContent = 'No class currently'; sub.textContent = arr.some(Boolean) ? 'See the routine below for the next class.' : 'No classes scheduled today.'}
+      const cards = document.getElementById('cards'); cards.innerHTML = '';
+      if (!arr) {cards.innerHTML = '<div class="empty">No classes scheduled for ' + dn + '.</div>'}
+      else {const es = entries(arr); if (!es.length) cards.innerHTML = '<div class="empty">No classes scheduled for ' + dn + '.</div>'; else es.forEach(e => {const c = document.createElement('article'); c.className = 'card' + (e.label === 'BREAK' ? ' break' : '') + (e.start <= nowIdx && nowIdx <= e.end ? ' now' : ''); const t = document.createElement('div'); t.className = 'time'; t.textContent = TIMES[e.start].split('–')[0] + '–' + TIMES[e.end].split('–')[1]; const small = document.createElement('small'); small.textContent = e.end > e.start ? 'Multiple periods' : ''; t.appendChild(small); const b = document.createElement('div'); b.innerHTML = '<div class="subject ' + (e.label.includes('/') ? 'special' : '') + '">' + e.label + '</div><div class="meta">' + (e.label === 'BREAK' ? 'Break' : 'Class XI · Science ' + section) + '</div>'; if (e.start <= nowIdx && nowIdx <= e.end) {const n = document.createElement('div'); n.className = 'now-pill'; n.textContent = 'NOW'; c.append(n)} c.append(t, b); cards.appendChild(c)})}
+      renderDesktop(arr, nowIdx); renderWeek();
+    }
+    function renderDesktop(arr, nowIdx) {const wrap = document.getElementById('desktopTable'); if (!arr) {wrap.innerHTML = '<div class="empty">No classes scheduled for ' + dayName(selected) + '.</div>'; return } let html = '<table><thead><tr><th>Section</th>' + TIMES.map(t => '<th>' + t + '</th>').join('') + '</tr></thead><tbody><tr><td>Science ' + section + '</td>'; arr.forEach((v, i) => {let cl = v === 'BREAK' ? 'breakcell' : ''; if (v && v.includes('/')) cl += ' specialcell'; if (i === nowIdx && v) cl += ' nowcell'; html += '<td class="' + cl + '">' + (v || '—') + '</td>'}); html += '</tr></tbody></table>'; wrap.innerHTML = html}
+    function renderWeek() {const g = document.getElementById('weekGrid'); g.innerHTML = '';['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].forEach(day => {const div = document.createElement('div'); div.className = 'day-mini' + (day === dayName(selected) ? ' active' : ''); const a = routines[section][day]; const count = a ? a.filter(Boolean).length : 0; div.innerHTML = '<strong>' + day + '</strong><span>' + count + ' timetable entries</span>'; g.appendChild(div)})}
+    sectionEl.addEventListener('change', () => {section = sectionEl.value; localStorage.setItem('vn-section', section); render()});
+    document.getElementById('prev').onclick = () => {selected.setDate(selected.getDate() - 1); render()};
+    document.getElementById('next').onclick = () => {selected.setDate(selected.getDate() + 1); render()};
+    document.getElementById('today').onclick = () => {selected = new Date(); selected.setHours(0, 0, 0, 0); render()};
+    render(); setInterval(render, 30000);
+  </script>
 </body>
+
 </html>
